@@ -1,8 +1,16 @@
-const connectButton = document.getElementById("connectButton");
+import { createWalletClient, custom } from "https://esm.sh/viem";
 
-function connect() {
+const connectButton = document.getElementById("connectButton");
+const fundButton = document.getElementById("fundButton");
+
+let walletClient;
+
+async function connect() {
   if (typeof window.ethereum !== "undefined") {
-    console.log("hi");
+    walletClient = createWalletClient({
+      transport: custom(window.ethereum),
+    });
+    await walletClient.requestAddresses();
   } else {
     connectButton.innerHTML = "Please install MetaMask!";
   }
