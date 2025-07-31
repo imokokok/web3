@@ -1,2 +1,2 @@
 # web3 learning
-学习
+学习记录
